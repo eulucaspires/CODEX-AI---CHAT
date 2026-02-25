@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta Ads CRM SaaS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        color: #d5dff5;
+        background: #020817;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at top right, #0d1b39 0%, #030712 45%, #020617 100%);
+      }
+      .layout { min-height: 100vh; display: grid; grid-template-columns: 250px 1fr; }
+      .sidebar {
+        border-right: 1px solid #16223f;
+        background: rgba(4, 10, 25, 0.9);
+        padding: 28px 18px;
+      }
+      .brand { margin-bottom: 36px; display: flex; flex-direction: column; gap: 3px; }
+      .brand-main { color: #f59e0b; font-size: .9rem; font-weight: 800; letter-spacing: .12em; }
+      .brand-sub { color: #89a2d9; font-size: .78rem; letter-spacing: .2em; }
+      .menu-title {
+        text-transform: uppercase; letter-spacing: .22em; color: #516489; font-size: .68rem;
+        margin: 20px 8px 10px;
+      }
+      .menu-item {
+        width: 100%; text-align: left; border: 0; background: transparent; color: #9eb2da;
+        padding: 12px; border-radius: 10px; margin-bottom: 5px; cursor: pointer; font-weight: 500;
+      }
+      .menu-item:hover, .menu-item.active { background: rgba(59, 130, 246, .16); color: #f8fbff; }
+      .content { padding: 30px; }
+      .header {
+        display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; gap: 14px;
+      }
+      h1 { margin: 0; font-size: 1.8rem; }
+      h2 { margin: 0; font-size: 1rem; }
+      p { margin: 8px 0 0; color: #91a6cf; }
+      .cta {
+        border: 1px solid #334d80; background: linear-gradient(90deg, #1f5eff, #2386ff); color: white;
+        border-radius: 12px; font-weight: 600; padding: 11px 18px;
+      }
+      .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 12px; margin-bottom: 16px; }
+      .kpi-card {
+        border: 1px solid #1e2f52; border-radius: 12px; padding: 16px;
+        background: linear-gradient(180deg, rgba(16, 32, 58, .9), rgba(6, 15, 30, .85));
+      }
+      .kpi-card p { margin: 0; text-transform: uppercase; letter-spacing: .1em; font-size: .66rem; color: #6f86b5; }
+      .kpi-card strong { margin-top: 7px; display: block; font-size: 1.7rem; }
+      .kpi-card.blue { border-top: 2px solid #3b82f6; }
+      .kpi-card.green { border-top: 2px solid #22c55e; }
+      .kpi-card.red { border-top: 2px solid #ef4444; }
+      .kpi-card.orange { border-top: 2px solid #f59e0b; }
+      .panel {
+        border: 1px solid #1c2d4c; border-radius: 14px;
+        background: linear-gradient(180deg, rgba(13, 25, 49, .9), rgba(6, 13, 27, .8)); overflow: hidden;
+      }
+      .panel-header {
+        padding: 16px; border-bottom: 1px solid #1d3258; display: flex; justify-content: space-between; align-items: center;
+      }
+      .panel-header span { color: #6f86b2; font-size: .75rem; }
+      .table-wrap { overflow: auto; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { padding: 14px 16px; text-align: left; }
+      th {
+        font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; color: #6f86b2;
+        border-bottom: 1px solid #1c2f53;
+      }
+      td { border-bottom: 1px solid #162948; }
+      .pill {
+        font-size: .74rem; border-radius: 999px; background: rgba(96, 165, 250, .19);
+        border: 1px solid #2f5faa; padding: 6px 10px;
+      }
+      .bottom-grid { margin-top: 16px; display: grid; grid-template-columns: repeat(2, minmax(230px, 1fr)); gap: 16px; }
+      .task-list, .alert-list {
+        list-style: none; padding: 16px; margin: 0; display: grid; gap: 13px;
+      }
+      .task-list li { display: flex; align-items: center; gap: 10px; color: #bdd0f8; }
+      input[type='checkbox'] { accent-color: #3b82f6; }
+      .alert-list li { border: 1px solid #264473; border-radius: 11px; padding: 10px; }
+      .alert-list strong { display: block; margin-bottom: 4px; }
+      .alert-list p { margin: 0; font-size: .9rem; }
+      .alert-list li.high { border-left: 3px solid #ef4444; }
+      .alert-list li.medium { border-left: 3px solid #f59e0b; }
+      .alert-list li.positive { border-left: 3px solid #22c55e; }
+      @media (max-width: 1100px) {
+        .layout { grid-template-columns: 1fr; }
+        .sidebar { border-right: 0; border-bottom: 1px solid #1d2d49; }
+        .kpi-grid, .bottom-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 760px) {
+        .header { flex-direction: column; align-items: flex-start; }
+        .kpi-grid, .bottom-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-main">META</span>
+          <span class="brand-sub">ADS CRM PRO</span>
+        </div>
+        <nav>
+          <p class="menu-title">Principal</p>
+          <button class="menu-item active">Dashboard</button>
+          <button class="menu-item">Clientes</button>
+          <button class="menu-item">Campanhas</button>
+          <button class="menu-item">Relatórios</button>
+          <p class="menu-title">Operação</p>
+          <button class="menu-item">Checklist Diário</button>
+          <button class="menu-item">Automação</button>
+          <button class="menu-item">Equipe</button>
+        </nav>
+      </aside>
+      <main class="content">
+        <header class="header">
+          <div>
+            <h1>Dashboard de Gestão Meta Ads</h1>
+            <p>Visão centralizada de performance, operação e saúde dos clientes.</p>
+          </div>
+          <button class="cta">+ Novo Cliente</button>
+        </header>
+        <section class="kpi-grid">
+          <article class="kpi-card blue"><p>Clientes Ativos</p><strong>38</strong></article>
+          <article class="kpi-card green"><p>Contas Saudáveis</p><strong>31</strong></article>
+          <article class="kpi-card red"><p>Contas em Risco</p><strong>7</strong></article>
+          <article class="kpi-card orange"><p>Investimento Total (30d)</p><strong>R$ 428k</strong></article>
+        </section>
+        <section class="panel">
+          <div class="panel-header"><h2>Carteira de clientes</h2><span>Atualizado agora</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Cliente</th><th>Gestor</th><th>Investimento</th><th>ROAS</th><th>CPA</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>VivaFit Suplementos</td><td>Ana Costa</td><td>R$ 58.200</td><td>4.7x</td><td>R$ 19,82</td><td><span class="pill">Escalando</span></td></tr>
+                <tr><td>Ótica Nova Era</td><td>Gabriel Souza</td><td>R$ 31.900</td><td>3.9x</td><td>R$ 24,10</td><td><span class="pill">Estável</span></td></tr>
+                <tr><td>Casa Mobi Decor</td><td>Amanda Lima</td><td>R$ 44.150</td><td>2.8x</td><td>R$ 35,77</td><td><span class="pill">Ajustar criativos</span></td></tr>
+                <tr><td>Auto Escola Prime</td><td>Daniel Rocha</td><td>R$ 19.670</td><td>1.9x</td><td>R$ 41,23</td><td><span class="pill">Em risco</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="bottom-grid">
+          <article class="panel">
+            <div class="panel-header"><h2>Checklist de hoje</h2></div>
+            <ul class="task-list">
+              <li><input type="checkbox" /><span>Subir 3 novos criativos UGC para VivaFit</span></li>
+              <li><input type="checkbox" /><span>Revisar limite de gasto da campanha ABO em Ótica Nova Era</span></li>
+              <li><input type="checkbox" /><span>Configurar CAPI para Casa Mobi Decor</span></li>
+              <li><input type="checkbox" /><span>Enviar relatório semanal de Auto Escola Prime</span></li>
+            </ul>
+          </article>
+          <article class="panel">
+            <div class="panel-header"><h2>Alertas inteligentes</h2></div>
+            <ul class="alert-list">
+              <li class="high"><strong>Auto Escola Prime</strong><p>ROAS caiu 27% nas últimas 72h</p></li>
+              <li class="medium"><strong>Casa Mobi Decor</strong><p>Frequência média > 3,5 em conjunto principal</p></li>
+              <li class="positive"><strong>VivaFit Suplementos</strong><p>Custo por compra abaixo da meta há 5 dias</p></li>
+            </ul>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
